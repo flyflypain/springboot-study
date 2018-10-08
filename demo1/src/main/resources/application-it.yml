@@ -1,0 +1,5 @@
+server:
+  port: 8081   
+
+self:
+  msg: hello spring API

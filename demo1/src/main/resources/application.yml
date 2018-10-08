@@ -1,0 +1,21 @@
+spring:
+  profiles:
+    active: mock
+      
+server:
+  port: 8080
+  
+  
+my:
+  shoppingLists:
+    - apple
+    - blueberry
+    - melon
+  commodity:
+    abbr-name: AOP
+    full-name: aspect oriented programming
+    price: 100
+    
+
+
+
