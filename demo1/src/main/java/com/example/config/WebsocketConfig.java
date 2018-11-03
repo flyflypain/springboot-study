@@ -1,4 +1,4 @@
-package com.example.websocket;
+package com.example.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.messaging.simp.config.MessageBrokerRegistry;
@@ -6,19 +6,22 @@ import org.springframework.web.socket.config.annotation.AbstractWebSocketMessage
 import org.springframework.web.socket.config.annotation.EnableWebSocketMessageBroker;
 import org.springframework.web.socket.config.annotation.StompEndpointRegistry;
 
+@SuppressWarnings("deprecation")
 @Configuration
 @EnableWebSocketMessageBroker
-public class WebSocketConfig extends AbstractWebSocketMessageBrokerConfigurer {
+public class WebsocketConfig extends AbstractWebSocketMessageBrokerConfigurer {
 
 	@Override
-	// 注册断电，发送或者订阅消息的时候都需要连接这个端点
-	public void registerStompEndpoints(StompEndpointRegistry stompEndpointRegistry) {
-		stompEndpointRegistry.addEndpoint("/gameInfo").withSockJS();
+	public void registerStompEndpoints(StompEndpointRegistry registry) {
+		registry.addEndpoint("/endpoint-websocket").setAllowedOrigins("*").withSockJS();
+		super.registerStompEndpoints(registry);
 	}
 
 	@Override
 	public void configureMessageBroker(MessageBrokerRegistry registry) {
 		registry.enableSimpleBroker("/topic", "/chat");
 		registry.setApplicationDestinationPrefixes("/app");
+		super.configureMessageBroker(registry);
 	}
+
 }
